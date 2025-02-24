@@ -17,13 +17,15 @@ def process_data(dataset):
     # elif key_value == 4.0:
     #     doc['Key'] = 'Choice 4'
 
+    key = int(doc['Key'])
+
     out_doc = {
         "Question": doc['Question Body'],
         'Choice 1': doc['Choice 1'],
         'Choice 2': doc['Choice 2'],
         'Choice 3': doc['Choice 3'],
         'Choice 4': doc['Choice 4'],
-        'gold': int(doc['Key'])
+        'gold': key
     }
 
     return out_doc

@@ -2,7 +2,7 @@ task: khayyam-challenge
 dataset_path: csv  # Indicating the dataset format is CSV
 dataset_name: null  # Not pulling from Hugging Face, so this is null
 dataset_kwargs:
-  data_files: ./khayyam-challenge.csv  # Relative path to the dataset CSV file
+  data_files: /khayyam-challenge.csv  # Relative path to the dataset CSV file
 output_type: multiple_choice
 training_split: train
 doc_to_text: "{{Answer}}\nQuestion: {{Question Body}}\nAnswer:"

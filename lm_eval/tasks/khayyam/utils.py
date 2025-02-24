@@ -30,7 +30,7 @@ def process_data(dataset):
 
 # Apply the function to each row of the DataFrame
     # Apply the function to the dataframe
-    return dataset.map(_process_data)
+ return dataset.map(_process_data)
 
 # Assuming `dataframe` is your pandas DataFrame
 # processed_data = process_data(dataframe)

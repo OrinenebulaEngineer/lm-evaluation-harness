@@ -17,7 +17,10 @@ def doc_to_target(dataset):
     # elif key_value == 4.0:
     #     doc['Key'] = 'Choice 4'
 
-    dataset['Key'] = int(dataset['Key'])
+
+    # Ensure the 'Key' field is an integer and process it
+    dataset['Key'] = dataset['Key'].apply(lambda x: int(x) if pd.notnull(x) else 0)  # Fallback to 0 if NaN or invalid
+
 
     # out_doc = {
     #     "Question": doc['Question Body'],

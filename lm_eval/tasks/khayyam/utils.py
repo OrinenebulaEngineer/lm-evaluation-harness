@@ -1,11 +1,15 @@
 import pandas as pd
 from datasets import Dataset
 
-def process_data(dataframe: pd.DataFrame):
+def process_data(dataframe):
+    dataset = Dataset.from_pandas(dataframe)
+
     def _process_data(doc):
         # Ensure doc is a DataFrame before further processing
-        if not isinstance(doc, pd.DataFrame):
-            doc = pd.DataFrame(doc)
+        # if not isinstance(doc, pd.DataFrame):
+        #     doc = pd.DataFrame(doc)
+
+
         
         if doc['Key'] == 1.0:
             doc['Key'] = 'Choice 1'

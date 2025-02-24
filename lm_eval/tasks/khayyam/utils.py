@@ -25,7 +25,7 @@ def process_data(dataset):
         'Choice 2': doc['Choice 2'],
         'Choice 3': doc['Choice 3'],
         'Choice 4': doc['Choice 4'],
-        'gold': key
+        'key': key
     }
 
     return out_doc

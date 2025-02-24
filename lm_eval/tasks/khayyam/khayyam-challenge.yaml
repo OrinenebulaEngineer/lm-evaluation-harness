@@ -2,12 +2,12 @@ task: khayyam-challenge
 dataset_path: csv  # Indicating the dataset format is CSV
 dataset_name: null  # Not pulling from Hugging Face, so this is null
 training_split: train
-test_split : test
-process_docs: !function utils.process_data
+test_split: test
+process_docs: !function utils.process_data  # Ensure this matches the function name in utils.py
 dataset_kwargs:
   data_files: 
-    train:  khayyam_challenge.csv
-    test:   khayyam_challenge.csv  
+    train: khayyam_challenge.csv
+    test: khayyam_challenge.csv  
 output_type: multiple_choice
 
 doc_to_text: "{{Answer}}\nQuestion: {{'Question'}}\nAnswer: "

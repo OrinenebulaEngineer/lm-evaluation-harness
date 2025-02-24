@@ -4,7 +4,7 @@ from datasets import Dataset
 def process_data(dataset):
     # dataset = Dataset.from_pandas(dataframe)
 
- def process_data(doc):
+ def _process_data(doc):
     # Ensure that Key is treated as a float (to handle possible type differences)
     # key_value = float(doc['Key'])
 

@@ -19,7 +19,7 @@ def doc_to_target(dataset):
 
 
     # Ensure the 'Key' field is an integer and process it
-    dataset['Key'] = dataset['Key'].apply(lambda x: int(x) if pd.notnull(x) else 0)  # Fallback to 0 if NaN or invalid
+    dataset['Key'] = dataset['Key'].map(lambda x: int(x) if pd.notnull(x) else 0)  # Fallback to 0 if NaN or invalid
 
 
     # out_doc = {

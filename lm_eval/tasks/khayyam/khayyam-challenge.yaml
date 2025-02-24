@@ -10,7 +10,7 @@ training_split: train
 test_split : test
 doc_to_text: "{{Answer}}\nQuestion: {{'Question Body'}}\nAnswer: "
 doc_to_target: "{{Answer}}"
-doc_to_choice: "{{Choice1}}\n{{Choice2}}\n{{Choice3}}\n{{Choice4}}"
+doc_to_choice: "{{'Choice 1'}}\n{{'Choice 2'}}\n{{'Choice 3'}}\n{{'Choice 4'}}"
 
 metric_list:
   - metric: acc

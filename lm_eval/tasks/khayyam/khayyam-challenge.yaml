@@ -1,0 +1,19 @@
+task: khayyam-challenge
+dataset_path: raia-center/khayyam-challenge
+dataset_name: null
+output_type: multiple_choice
+training_split: train
+doc_to_text: "{{Answer}}\nQuestion: {{Question Body}}\nAnswer:"
+doc_to_target: "{{Answer}}"
+doc_to_choice: "{{[Choice 1, Choice 2, Choice 3, Choice 4]}}"
+#should_decontaminate: true
+#doc_to_decontamination_query: "{{support}} {{question}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

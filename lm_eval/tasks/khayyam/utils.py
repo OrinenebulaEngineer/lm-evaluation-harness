@@ -17,7 +17,7 @@ def process_data(dataset):
     # elif key_value == 4.0:
     #     doc['Key'] = 'Choice 4'
 
-    key = int(doc['Key'])
+    # key = int(doc['Key'])
 
     out_doc = {
         "Question": doc['Question Body'],
@@ -25,7 +25,7 @@ def process_data(dataset):
         'Choice 2': doc['Choice 2'],
         'Choice 3': doc['Choice 3'],
         'Choice 4': doc['Choice 4'],
-        'key': key
+        'Key': int(doc['Key'])
     }
 
     return out_doc

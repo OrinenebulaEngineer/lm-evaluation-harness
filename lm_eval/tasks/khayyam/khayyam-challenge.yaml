@@ -11,7 +11,7 @@ dataset_kwargs:
 output_type: multiple_choice
 
 doc_to_text: "{{Answer}}\nQuestion: {{'Question'}}\nAnswer: "
-doc_to_target: "{{key}}"
+doc_to_target: "{{Key}}"
 doc_to_choice: "{{['Choice 1', 'Choice 2', 'Choice 3', 'Choice 4']}}"
 
 metric_list:

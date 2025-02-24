@@ -8,5 +8,5 @@ def get_data_path(file_name):
 
     # Build the relative path from the script's location
     data_path = os.path.join(current_dir, file_name)
-
+    print(data_path)
     return data_path

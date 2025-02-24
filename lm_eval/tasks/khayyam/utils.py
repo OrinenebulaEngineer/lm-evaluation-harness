@@ -2,7 +2,7 @@ import pandas as pd
 from datasets import Dataset
 
 def process_data(dataframe):
-    dataset = Dataset.from_pandas(dataframe)
+    # dataset = Dataset.from_pandas(dataframe)
 
     def _process_data(doc):
         # Ensure doc is a DataFrame before further processing

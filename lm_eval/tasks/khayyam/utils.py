@@ -1,10 +1,10 @@
 import pandas as pd
 from datasets import Dataset
 
-def process_data(dataset):
+def process_docs(dataset):
     # dataset = Dataset.from_pandas(dataframe)
 
- def _process_data(doc):
+ def _process_docs(doc):
     # Ensure that Key is treated as a float (to handle possible type differences)
     # key_value = float(doc['Key'])
 
@@ -32,7 +32,7 @@ def process_data(dataset):
 
 # Apply the function to each row of the DataFrame
     # Apply the function to the dataframe
- return dataset.map(_process_data)
+ return dataset.map(_process_docs)
 
 # Assuming `dataframe` is your pandas DataFrame
 # processed_data = process_data(dataframe)

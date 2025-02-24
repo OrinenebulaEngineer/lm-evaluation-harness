@@ -21,7 +21,8 @@ def process_docs(dataset):
 
     out_doc = {
         "Question": doc['Question Body'],
-        'gold': int(doc['Key'])
+        'Key': int(doc['Key'])
+        
     }
 
     return out_doc

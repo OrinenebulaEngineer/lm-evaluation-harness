@@ -29,7 +29,7 @@ def process_data(dataframe: pd.DataFrame):
         return out_doc
     
     # Apply the function to the dataframe
-    return dataframe.map(_process_data, axis=1)
+    return dataframe.map(_process_data)
 
 # Assuming `dataframe` is your pandas DataFrame
 # processed_data = process_data(dataframe)

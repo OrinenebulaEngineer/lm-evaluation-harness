@@ -17,15 +17,15 @@ def process_docs(dataset):
     # elif key_value == 4.0:
     #     doc['Key'] = 'Choice 4'
 
-    # key = int(doc['Key'])
+    doc['Key'] = int(doc['Key'])
 
-    out_doc = {
-        "Question": doc['Question Body'],
-        'Key': int(doc['Key'])
-        
-    }
+    # out_doc = {
+    #     "Question": doc['Question Body'],
+    #     'Key': int(doc['Key'])
 
-    return out_doc
+    # }
+
+    return doc
 
 # Apply the function to each row of the DataFrame
     # Apply the function to the dataframe

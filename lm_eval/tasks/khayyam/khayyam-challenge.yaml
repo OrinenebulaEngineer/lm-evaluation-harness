@@ -10,7 +10,7 @@ dataset_kwargs:
     test: khayyam_challenge.csv  
 output_type: multiple_choice
 
-doc_to_text: "{{'Question'}}"
+doc_to_text: "{{'Question Body'}}"
 doc_to_target: "{{Key}}"
 doc_to_choice: "{{['Choice 1', 'Choice 2', 'Choice 3', 'Choice 4']}}"
 

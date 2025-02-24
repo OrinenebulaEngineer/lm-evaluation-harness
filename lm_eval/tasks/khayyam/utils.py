@@ -19,7 +19,14 @@ def doc_to_target(dataset):
 
 
     # Ensure the 'Key' field is an integer and process it
-    dataset['Key'] = dataset['Key'].map(lambda x: int(x) if pd.notnull(x) else 0)  # Fallback to 0 if NaN or invalid
+    # Check if dataset is a DataFrame or a single document (dictionary)
+    if isinstance(dataset, pd.DataFrame):
+        # Apply the transformation to the 'Key' column if it's a DataFrame
+        dataset['Key'] = dataset['Key'].apply(lambda x: int(x) if pd.notnull(x) else 0)
+    else:
+        # If it's a single dictionary, just convert the 'Key' field to int
+        if isinstance(dataset, dict):
+            dataset['Key'] = int(dataset.get('Key', 0))  # Default to 0 if 'Key' is missing
 
 
     # out_doc = {

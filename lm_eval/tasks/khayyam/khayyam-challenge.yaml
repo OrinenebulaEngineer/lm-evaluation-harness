@@ -3,8 +3,8 @@ dataset_path: csv  # Indicating the dataset format is CSV
 dataset_name: null  # Not pulling from Hugging Face, so this is null
 dataset_kwargs:
   data_files: 
-    train: lm-evaluation-harness/lm_eval/tasks/khayyam/khayyam_challenge.csv  
-    test:  lm-evaluation-harness/lm_eval/tasks/khayyam/khayyam_challenge.csv   
+    train: !function utils.get_data_path(file_name) 
+    test:  !function utils.get_data_path(file_name)  
 output_type: multiple_choice
 training_split: train
 test_split : test

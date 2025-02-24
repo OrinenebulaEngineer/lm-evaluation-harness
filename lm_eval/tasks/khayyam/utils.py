@@ -22,11 +22,11 @@ def doc_to_target(dataset):
     # Check if dataset is a DataFrame or a single document (dictionary)
     if isinstance(dataset, pd.DataFrame):
         # Apply the transformation to the 'Key' column if it's a DataFrame
-        dataset['Key'] = dataset['Key'].apply(lambda x: int(x) if pd.notnull(x) else 0)
+        dataset['Key'] = dataset['Key'].apply(lambda x: int(x))
     else:
         # If it's a single dictionary, just convert the 'Key' field to int
         if isinstance(dataset, dict):
-            dataset['Key'] = int(dataset.get('Key', 0))  # Default to 0 if 'Key' is missing
+            dataset['Key'] = int(dataset.get('Key'))  # Default to 0 if 'Key' is missing
 
 
     # out_doc = {

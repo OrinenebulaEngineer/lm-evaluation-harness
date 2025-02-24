@@ -6,7 +6,7 @@ def process_data(dataset):
 
  def process_data(doc):
     # Ensure that Key is treated as a float (to handle possible type differences)
-    key_value = float(doc['Key'])
+    # key_value = float(doc['Key'])
 
     # if key_value == 1.0:
     #     doc['Key'] = 'Choice 1'

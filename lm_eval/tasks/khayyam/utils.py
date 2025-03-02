@@ -26,7 +26,7 @@ def doc_to_target(dataset):
     else:
         # If it's a single dictionary, just convert the 'Key' field to int
         if isinstance(dataset, dict):
-            dataset['Key'] = int(dataset.get('Key'))  # Default to 0 if 'Key' is missing
+            dataset['gold'] = int(dataset.get('Key'))  # Default to 0 if 'Key' is missing
 
 
     # out_doc = {

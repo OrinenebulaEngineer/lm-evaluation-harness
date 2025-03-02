@@ -9,10 +9,11 @@ dataset_kwargs:
     train: khayyam_challenge.csv
     test: khayyam_challenge.csv  
 output_type: multiple_choice
+process_docs: !function utils.process_docs
 
 doc_to_text: "{{'Question Body'}}"
-doc_to_target: !function utils.doc_to_target
-doc_to_choice: "{{['Choice 1', 'Choice 2', 'Choice 3', 'Choice 4']}}"
+doc_to_target: "{{gold}}"
+doc_to_choice: "choices"
 
 metric_list:
   - metric: acc

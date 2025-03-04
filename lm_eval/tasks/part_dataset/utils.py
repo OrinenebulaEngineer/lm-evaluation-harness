@@ -3,8 +3,10 @@ import datasets
 
 def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
     def _process_doc(doc):
-        choices = [doc[f'ending{i}'] for i in range(10)]  # Assuming choices are labeled as 'Choice 1' to 'Choice 10'
-
+        choices = []
+        for i in range(10):
+            choice = doc.get(f'ending{i}','') 
+            choices.append(choice if choice is not None else "No choice is available")
         out_doc = {
             "query": doc['question'],
             "choices": choices,

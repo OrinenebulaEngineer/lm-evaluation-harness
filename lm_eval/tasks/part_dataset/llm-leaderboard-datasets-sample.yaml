@@ -1,7 +1,7 @@
 tag:
   - multiple_choice
-task: OpenThoughts-114k
-dataset_path: OpenThoughts-114k
+task: PartAI/llm-leaderboard-datasets-sample
+dataset_path: PartAI/llm-leaderboard-datasets-sample
 dataset_name: null
 output_type: multiple_choice
 #training_split: train

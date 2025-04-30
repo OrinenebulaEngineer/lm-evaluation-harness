@@ -7,7 +7,7 @@ from manage_request import EvalRequest
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
-from lm_eval import evaluator, utils
+from lm_evaluation_harness.lm_eval import evaluator, utils
 from manage_request import EvalRequest
 from typing import Union
 from logging import setup_logger

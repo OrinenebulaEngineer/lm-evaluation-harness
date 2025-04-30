@@ -1,0 +1,2 @@
+{"Model" : "google/gemma-2-9b" , "Precision" : "bfloat16", "#Params (B)": "9.24","khayyam-challenge" : 20, "hellaswag" : 40 }
+{"Model" : "Qwen2.5-14B-Instruct-1M", "Precision" : "bfloat16", "#Params (B)": "14", "khayyam-challenge" : 10, "hellaswag" : 55 }

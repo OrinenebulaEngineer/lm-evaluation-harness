@@ -67,7 +67,7 @@ def run_evaluatin(
                                  )
 
     results["config"]["model_dtype"] = eval_request.precision
-    results["config"]["model_name"] = eval_request.model
+    results["config"]["model_name"] = eval_request.model_arg
     results["config"]["model_sha"] = eval_request.revision
 
     dumped = json.dumps(results, indent=2)

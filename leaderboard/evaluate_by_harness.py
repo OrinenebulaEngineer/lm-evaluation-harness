@@ -92,7 +92,7 @@ def write_to_jsonl(results:str, jsonl_path:str):
     if task_name == 'khayyam-challenge':    
         output={
             
-            "khayyam-challenge" : results['results'][task_name]["acc,none"],
+            "khayyam-challenge" : round((results['results'][task_name]["acc,none"])*100,2),
             "Model" : results["config"]["model_name"],
             "#Params (B)" : ((results["config"]["model_num_parameters"])//1000000000),
             "Precision" : results["config"]["model_dtype"]

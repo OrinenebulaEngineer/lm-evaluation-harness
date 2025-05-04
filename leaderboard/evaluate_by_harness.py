@@ -48,8 +48,11 @@ def run_evaluatin(
         
 
     task_manager = TaskManager()
+    print("this is task manager")
     all_tasks = task_manager.all_tasks
+    print("this is all tasks")
     task_names = utils.pattern_match(task_names,all_tasks)
+    print("task_name")
 
     results = evaluator.simple_evaluate(
                                     model = model,

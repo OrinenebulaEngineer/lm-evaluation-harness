@@ -77,7 +77,7 @@ if __name__ == "__main__":
         )
     run_evaluatin(
         eval_request=eval_request,
-        task_names=['khayyam-challenge'],
+        task_names=['hellaswag'],
         num_fewshot=0,
         batch_size="auto",
         device='cuda',

@@ -5,7 +5,7 @@ training_split: train
 test_split: test
 
 dataset_kwargs:
-  data_files 
+  data_files:
     	train: khayyam_challenge.csv		
     	test: khayyam_challenge.csv
 

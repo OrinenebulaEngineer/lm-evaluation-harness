@@ -1,8 +1,9 @@
 import sys
 import logging
-
+from datetime import datetime
 import os
 from manage_request import EvalRequest
+from pathlib import Path
 
 
 import json
@@ -72,7 +73,13 @@ def run_evaluatin(
     dumped = json.dumps(results, indent=2)
     logger.info(dumped)
 
+    results_path = Path(local_dir, eval_request.model, f"results_{datetime.now()}.json")
+    results_path.parent.mkdir(exist_ok=True, parents=True)
+    results_path.write_text(dumped)
+
     logger.info(evaluator.make_table(results))
+
+    
 if __name__ == "__main__":
     eval_request = EvalRequest(
         model_arg="google/gemma-2-9b", 

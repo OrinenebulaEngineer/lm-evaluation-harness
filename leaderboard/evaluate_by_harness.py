@@ -79,7 +79,7 @@ def run_evaluatin(
     results_path.parent.mkdir(exist_ok=True, parents=True)
     results_path.write_text(dumped)
 
-    logger.info(evaluator.make_table(results))
+    logger.info(utils.make_table(results))
 
     
 if __name__ == "__main__":

@@ -25,7 +25,7 @@ class EvalRequest:
         """Edit this function if you want to manage more complex quantization issues. You'll need to map it to
         the evaluation suite you chose.
         """
-        model_args = f"pretrained={self.model},revision={self.revision}"
+        model_args = f"pretrained={self.model_arg},revision={self.revision}"
 
         if self.precision in ["float16", "bfloat16"]:
             model_args += f",dtype={self.precision}"

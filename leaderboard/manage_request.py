@@ -9,7 +9,7 @@ class EvalRequest:
     json_filepath: str
     weight_type: str = "Original"
     model_type: Optional[str] = None  # pretrained, fine-tuned, etc. - define your own categories in
-    precision: str = ""  # float16, bfloat16
+    precision: str = "bfloat16"  # float16, bfloat16
     revision: str = "main"  # commit hash
     submitted_time: Optional[str] = (
         "2024"  # random date just so that we can still order requests by date

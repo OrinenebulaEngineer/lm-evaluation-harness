@@ -1,13 +1,11 @@
 import sys
+import logging
+
 import os
 from manage_request import EvalRequest
 
-# Add the lm-evaluation-harness directory to the Python path
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'lm-evaluation-harness')))
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import json
-import logging
 from lm_eval import evaluator, utils
 from manage_request import EvalRequest
 from typing import Union

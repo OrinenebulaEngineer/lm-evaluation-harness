@@ -14,7 +14,6 @@ from config_logging import setup_logger
 from lm_eval.tasks import TaskManager
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-import utils_leaderboard
 
 
 def run_evaluatin(
@@ -90,12 +89,14 @@ def run_evaluatin(
 def write_to_jsonl(results:str, jsonl_path:str):
     keys= list(results['results'].keys())
     task_name = keys[0]
-    output={
-        "accuracy" : results['results'][task_name]["acc,none"],
-        "model_name" : results["config"]["model_name"],
-        "model_parameter" : ((results["config"]["model_num_parameters"])//1000000000),
-        "precision" : results["config"]["model_dtype"]
-    }
+    if task_name == 'khayyam-challenge':    
+        output={
+            
+            "khayyam-challenge" : results['results'][task_name]["acc,none"],
+            "Model" : results["config"]["model_name"],
+            "#Params (B)" : ((results["config"]["model_num_parameters"])//1000000000),
+            "Precision" : results["config"]["model_dtype"]
+        }
 
     with open(jsonl_path,'a') as f:
         f.write(json.dumps(output) + "\n")

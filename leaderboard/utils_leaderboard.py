@@ -9,7 +9,8 @@ def read_jsonl_file(jsonl_file_path:str):
     result_list = []
     if not os.path.exists(jsonl_file_path):
         print("file not found")
-        return ["File not found", "", "", "", "", ""]
+        # return ["File not found", "", "", "", "", ""]
+        return
     with open(path, "r") as f:
         for line in f:
             try:
@@ -33,6 +34,10 @@ def read_jsonl_file(jsonl_file_path:str):
             df = pd.DataFrame(result_list, columns=["Model","Average_Accuracy", "Precision", "#Params (B)", "hellaswag", "khayyam-challenge"])
             df_sorted = df.sort_values(by="Average_Accuracy", ascending=False)
     return df_sorted.values.tolist()
+
+
+
+
 
 def lunch_show_results():
     headers = ["Model","Average_Accuracy", "Precision", "#Params (B)", "hellaswag", "khayyam-challenge"]

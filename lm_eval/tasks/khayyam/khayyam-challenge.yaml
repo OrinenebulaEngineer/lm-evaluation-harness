@@ -1,4 +1,4 @@
-task: khayyam-challenge 
+task: khayyam-challenge
 dataset_path: csv  # Indicating the dataset format is CSV
 dataset_name: null  # Not pulling from Hugging Face, so this is null
 training_split: train
@@ -6,8 +6,8 @@ test_split: test
 
 dataset_kwargs:
   data_files:
-    	train: khayyam_challenge.csv		
-    	test: khayyam_challenge.csv
+    train: khayyam_challenge.csv
+    test: khayyam_challenge.csv
 
 output_type: multiple_choice
 process_docs: !function utils.process_docs
@@ -15,8 +15,8 @@ process_docs: !function utils.process_docs
 doc_to_text: "Question: {{query}}\nAnswer: "
 doc_to_target: "{{gold}}"
 doc_to_choice: "choices"
-#should_decontaminate: true
-#doc_to_decontamination_query: "{{support}} {{question}}"
+# should_decontaminate: true
+# doc_to_decontamination_query: "{{support}} {{question}}"
 metric_list:
   - metric: acc
     aggregation: mean

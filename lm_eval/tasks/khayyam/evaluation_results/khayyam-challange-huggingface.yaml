@@ -1,19 +1,11 @@
 task: khayyam-challenge
-dataset_path: csv
+dataset_path: khayyam-challenge
 dataset_name: null
 output_type: multiple_choice
 training_split: train
-test_split: test
-dataset_kwargs:
-  data_files:
-    train: "khayyam_challenge.csv"
-    test: "khayyam_challenge.csv"
-output_type: multiple_choice
-process_docs: !function utils.process_docs
-
-doc_to_text: "Question: {{Question Body}}\nAnswer:"
-doc_to_target: "{{gold}}"
-doc_to_choice: "choices"
+doc_to_text: "{{Answer}}\nQuestion: {{Question Body}}\nAnswer:"
+doc_to_target: "{{Answer}}"
+doc_to_choice: "{{[Choice 1, Choice 2, Choice 3, Choice 4]}}"
 #should_decontaminate: true
 #doc_to_decontamination_query: "{{support}} {{question}}"
 metric_list:

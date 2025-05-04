@@ -102,7 +102,10 @@ def write_to_jsonl(results:str, jsonl_path:str):
 
     return output
 
-
+def read_json_file(file_path: str):
+    with open(file_path, 'r') as json_file:
+        data = json.load(json_file)
+    return data 
 
 
 
@@ -120,6 +123,6 @@ if __name__ == "__main__":
     #     device='cuda',
     #     local_dir="output_result",
     #     )
-    result = utils_leaderboard.read_json_file("output_result/google/gemma-2-9b/results_2025-05-04 12:45:41.097698.json")
+    result = read_json_file("output_result/google/gemma-2-9b/results_2025-05-04 12:45:41.097698.json")
     output = write_to_jsonl(results=result, jsonl_path="results.jsonl")
     print(output)

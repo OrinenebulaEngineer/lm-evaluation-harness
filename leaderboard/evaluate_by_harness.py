@@ -75,7 +75,7 @@ def run_evaluatin(
     dumped = json.dumps(results, indent=2)
     logger.info(dumped)
 
-    results_path = Path(local_dir, eval_request.model, f"results_{datetime.now()}.json")
+    results_path = Path(local_dir, eval_request.model_arg, f"results_{datetime.now()}.json")
     results_path.parent.mkdir(exist_ok=True, parents=True)
     results_path.write_text(dumped)
 

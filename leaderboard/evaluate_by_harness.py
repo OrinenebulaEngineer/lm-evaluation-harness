@@ -79,7 +79,20 @@ def run_evaluatin(
     results_path.parent.mkdir(exist_ok=True, parents=True)
     results_path.write_text(dumped)
 
+    
+
     logger.info(utils.make_table(results))
+
+def write_to_jsonl(results:str, model:str, pre):
+    keys= list(results['results'].keys())
+    task_name = keys[0]
+
+    accuracy = results['results'][task_name]["acc,none"]
+
+    
+
+
+
 
     
 if __name__ == "__main__":
@@ -93,6 +106,5 @@ if __name__ == "__main__":
         num_fewshot=0,
         batch_size="auto",
         device='cuda',
-        limit=10,
         local_dir="output_result",
         )

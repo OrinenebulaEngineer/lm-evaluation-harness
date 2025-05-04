@@ -54,7 +54,7 @@ def run_evaluatin(
     results = evaluator.simple_evaluate(
                                     model = model,
                                     model_args = eval_request.get_model_args(),
-                                    task = task_names,
+                                    tasks = task_names,
                                     num_fewshot = num_fewshot,
                                     batch_size = batch_size,
                                     device = device,

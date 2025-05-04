@@ -91,5 +91,6 @@ if __name__ == "__main__":
         num_fewshot=0,
         batch_size="auto",
         device='cuda',
+        limit=10,
         local_dir="output_result",
         )

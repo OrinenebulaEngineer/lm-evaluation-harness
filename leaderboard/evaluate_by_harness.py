@@ -9,7 +9,7 @@ import json
 from lm_eval import evaluator, utils
 from manage_request import EvalRequest
 from typing import Union
-from logging import setup_logger
+from config_logging import setup_logger
 from lm_eval.tasks import TaskManager
 
 

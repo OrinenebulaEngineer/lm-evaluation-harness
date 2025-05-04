@@ -12,6 +12,8 @@ from manage_request import EvalRequest
 from typing import Union
 from config_logging import setup_logger
 from lm_eval.tasks import TaskManager
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
 def run_evaluatin(

@@ -79,10 +79,13 @@ def run_evaluatin(
     results_path = Path(local_dir, eval_request.model_arg, f"results_{datetime.now()}.json")
     results_path.parent.mkdir(exist_ok=True, parents=True)
     results_path.write_text(dumped)
+    results["config"]["results_path"] = results_path
 
     
 
     logger.info(utils.make_table(results))
+    print(f"evaluation result saved to {results_path}")
+    return(results_path)
 
 def write_to_jsonl(results:str, jsonl_path:str):
     keys= list(results['results'].keys())
@@ -117,6 +120,6 @@ if __name__ == "__main__":
     #     device='cuda',
     #     local_dir="output_result",
     #     )
-    result = utils_leaderboard.read_json_file()
+    result = utils_leaderboard.read_json_file("output_result/google/gemma-2-9b/results_2025-05-04 12:45:41.097698.json")
     output = write_to_jsonl(results=result, jsonl_path="results.jsonl")
     print(output)

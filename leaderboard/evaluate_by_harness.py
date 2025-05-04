@@ -14,6 +14,7 @@ from config_logging import setup_logger
 from lm_eval.tasks import TaskManager
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
+import utils_leaderboard
 
 
 def run_evaluatin(
@@ -51,11 +52,11 @@ def run_evaluatin(
         
 
     task_manager = TaskManager()
-    print("this is task manager")
+    
     all_tasks = task_manager.all_tasks
-    print("this is all tasks")
+    
     task_names = utils.pattern_match(task_names,all_tasks)
-    print("task_name")
+  
 
     results = evaluator.simple_evaluate(
                                     model = model,
@@ -83,28 +84,39 @@ def run_evaluatin(
 
     logger.info(utils.make_table(results))
 
-def write_to_jsonl(results:str, model:str, pre):
+def write_to_jsonl(results:str, jsonl_path:str):
     keys= list(results['results'].keys())
     task_name = keys[0]
+    output={
+        "accuracy" : results['results'][task_name]["acc,none"],
+        "model_name" : results["config"]["model_name"],
+        "model_parameter" : ((results["config"]["model_num_parameters"])//1000000000),
+        "precision" : results["config"]["model_dtype"]
+    }
 
-    accuracy = results['results'][task_name]["acc,none"]
+    with open(jsonl_path,'a') as f:
+        f.write(json.dumps(output) + "\n")
 
-    
+    return output
+
 
 
 
 
     
 if __name__ == "__main__":
-    eval_request = EvalRequest(
-        model_arg="google/gemma-2-9b", 
-        json_filepath="results.jsonl",
-        )
-    run_evaluatin(
-        eval_request=eval_request,
-        task_names=['khayyam-challenge'],
-        num_fewshot=0,
-        batch_size="auto",
-        device='cuda',
-        local_dir="output_result",
-        )
+    # eval_request = EvalRequest(
+    #     model_arg="google/gemma-2-9b", 
+    #     json_filepath="results.jsonl",
+    #     )
+    # run_evaluatin(
+    #     eval_request=eval_request,
+    #     task_names=['khayyam-challenge'],
+    #     num_fewshot=0,
+    #     batch_size="auto",
+    #     device='cuda',
+    #     local_dir="output_result",
+    #     )
+    result = utils_leaderboard.read_json_file()
+    output = write_to_jsonl(results=result, jsonl_path="results.jsonl")
+    print(output)

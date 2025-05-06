@@ -13,7 +13,7 @@ from typing import Union
 from config_logging import setup_logger
 from lm_eval.tasks import TaskManager
 import os
-import utils_leaderboard
+import utils_leaderboard 
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -45,7 +45,7 @@ def run_evaluatin(
         _type_: _description_
     """
     task_direcotry = f"/lm_eval/tasks/{task_direcotry}, "
-    run_direcory = utils_leaderboard.change_directory_run(task_dir_name=task_direcotry)
+    run_direcory = utils_leaderboard.change_directory(task_dir_name=task_direcotry)
     print(f"Current directory is {run_direcory}")
 
     logging.getLogger("openai").setLevel(logging.WARNING)

@@ -5,7 +5,8 @@ app = Flask(__name__)
 @app.route('/evaluate', methods=['POST'])
 def evaluate():
     data = request.json
-    print(f"🚀 Evaluation triggered for model: {data.get('model')}")
+    model = data.get('model')
+    print(f"🚀 Evaluation triggered for model: {model}")
 
     return jsonify({"status": "evaluation started", "model": data.get("model")})
 

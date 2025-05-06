@@ -128,6 +128,7 @@ def evaluate(model):
             task_direcotry=task,
             device='cuda',
             local_dir="output_result",
+            limit = 5
             )
         print(eval_result)
         eval_results.append(eval_result)

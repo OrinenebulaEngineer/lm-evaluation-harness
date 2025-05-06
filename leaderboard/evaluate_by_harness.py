@@ -22,6 +22,7 @@ def run_evaluatin(
         
         eval_request : EvalRequest,
         task_names : list,
+        task_direcotry : str,
         num_fewshot: int,
         batch_size: Union[int, str],
         device: str,
@@ -124,6 +125,7 @@ def evaluate(model):
             task_names=task,
             num_fewshot=0,
             batch_size="auto",
+            task_direcotry=task
             device='cuda',
             local_dir="output_result",
             )

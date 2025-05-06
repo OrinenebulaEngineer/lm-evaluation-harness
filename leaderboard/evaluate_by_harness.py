@@ -13,6 +13,8 @@ from typing import Union
 from config_logging import setup_logger
 from lm_eval.tasks import TaskManager
 import os
+import utils_leaderboard
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
@@ -20,6 +22,7 @@ def run_evaluatin(
         
         eval_request : EvalRequest,
         task_names : list,
+        task_direcotry : str,
         num_fewshot: int,
         batch_size: Union[int, str],
         device: str,
@@ -41,6 +44,9 @@ def run_evaluatin(
     Returns:
         _type_: _description_
     """
+    task_direcotry = f"/lm_eval/tasks/{task_direcotry}, "
+    run_direcory = utils_leaderboard.change_directory_run(task_dir_name=task_direcotry)
+    print(f"Current directory is {run_direcory}")
 
     logging.getLogger("openai").setLevel(logging.WARNING)
     logger = setup_logger(__name__)
@@ -84,24 +90,21 @@ def run_evaluatin(
 
     logger.info(utils.make_table(results))
     print(f"evaluation result saved to {results_path}")
+
+    jsonl_path = utils_leaderboard.change_directory("leaderbard")
+    # if os.path.exists(jsonl_path):
+    #     print("Directory already exists:", jsonl_path)
+    # else:
+    #     os.makedirs(jsonl_path, exist_ok=True)
+    #     print("Model args directory created at:", jsonl_path)
+    #     now = datetime.now()
+    #     date_time_str = now.strftime("%Y%m%d_%H%M%S")
+    #     result_path = f"result_{date_time_str}.jsonl"
+
+    eval_result = utils_leaderboard.write_to_jsonl(results, jsonl_path=jsonl_path)
     return(results_path)
 
-def write_to_jsonl(results:str, jsonl_path:str):
-    keys= list(results['results'].keys())
-    task_name = keys[0]
-    if task_name == 'khayyam-challenge':    
-        output={
-            
-            "khayyam-challenge" : round((results['results'][task_name]["acc,none"])*100,2),
-            "Model" : results["config"]["model_name"],
-            "#Params (B)" : ((results["config"]["model_num_parameters"])//1000000000),
-            "Precision" : results["config"]["model_dtype"]
-        }
 
-    with open(jsonl_path,'a') as f:
-        f.write(json.dumps(output) + "\n")
-
-    return output
 
 def read_json_file(file_path: str):
     with open(file_path, 'r') as json_file:
@@ -109,9 +112,23 @@ def read_json_file(file_path: str):
     return data 
 
 
-
+def evaluate(model):
+    eval_request = EvalRequest(
+        model_arg=model, 
+        json_filepath="results.jsonl",
+        )
+    tasks = ['hellaswag', 'khayyam-challeng']
+    for task in tasks:
+        run_evaluatin(
+            eval_request=eval_request,
+            task_names=task,
+            num_fewshot=0,
+            batch_size="auto",
+            device='cuda',
+            local_dir="output_result",
+            )
     
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # eval_request = EvalRequest(
     #     model_arg="google/gemma-2-9b", 
     #     json_filepath="results.jsonl",
@@ -124,6 +141,7 @@ if __name__ == "__main__":
     #     device='cuda',
     #     local_dir="output_result",
     #     )
-    result = read_json_file("output_result/google/gemma-2-9b/results_2025-05-04 12:45:41.097698.json")
-    output = write_to_jsonl(results=result, jsonl_path="results.jsonl")
-    print(output)
+    # result = read_json_file("output_result/google/gemma-2-9b/results_2025-05-04 12:45:41.097698.json")
+    # output = write_to_jsonl(results=result, jsonl_path="results.jsonl")
+    # print(output)
+

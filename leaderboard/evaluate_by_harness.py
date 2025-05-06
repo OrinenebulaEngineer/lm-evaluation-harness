@@ -61,8 +61,7 @@ def run_evaluatin(
     all_tasks = task_manager.all_tasks
     
     task_names = utils.pattern_match(task_names,all_tasks)
-  
-
+    print(f"task name is {task_names}")
     results = evaluator.simple_evaluate(
                                     model = model,
                                     model_args = eval_request.get_model_args(),
@@ -118,7 +117,7 @@ def evaluate(model):
         model_arg=model, 
         json_filepath="results.jsonl",
         )
-    tasks = ['hellaswag', 'khayyam-challange']
+    tasks = ['hellaswag', 'khayyam-challenge']
     eval_results = []
     jsonl_path = ""
     for task in tasks:

@@ -61,7 +61,7 @@ def change_directory(task_dir_name:str):
     while not current_directory.endswith('lm-evaluation-harness'):
         current_directory = os.path.dirname(current_directory)
         if current_directory == os.path.dirname(current_directory):
-            print("Project root 'lm_harness' not found.")
+            print("Project root 'lm-evaluation-harness' not found.")
             return
     print(f"this is current dit {current_directory}")    
     target_path = os.path.join(current_directory, task_dir_name )
@@ -81,11 +81,10 @@ def write_to_jsonl(results, jsonl_path:str):
         return None
 
     keys= list(results['results'].keys())
-    task_name = keys[0]
-    if task_name == 'khayyam-challenge':    
-        output={
+    task_name = keys[0] 
+    output={
             
-            "khayyam-challenge" : round((results['results'][task_name]["acc,none"])*100,2),
+            task_name : round((results['results'][task_name]["acc,none"])*100,2),
             "Model" : results["config"]["model_name"],
             "#Params (B)" : ((results["config"]["model_num_parameters"])//1000000000),
             "Precision" : results["config"]["model_dtype"]

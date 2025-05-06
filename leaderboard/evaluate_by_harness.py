@@ -125,7 +125,7 @@ def evaluate(model):
             task_names=task,
             num_fewshot=0,
             batch_size="auto",
-            task_direcotry=task
+            task_direcotry=task,
             device='cuda',
             local_dir="output_result",
             )

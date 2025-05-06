@@ -118,7 +118,7 @@ def evaluate(model):
         model_arg=model, 
         json_filepath="results.jsonl",
         )
-    tasks = ['hellaswag', 'khayyam']
+    tasks = ['hellaswag', 'khayyam-challange']
     eval_results = []
     jsonl_path = ""
     for task in tasks:

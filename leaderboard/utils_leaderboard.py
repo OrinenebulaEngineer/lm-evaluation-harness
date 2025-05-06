@@ -48,12 +48,55 @@ def lunch_show_results():
     app.launch()
 
 
+import os 
+
+def change_directory(task_dir_name:str):
+
+    current_directory = os.getcwd()
+    while not current_directory.endswith('lm_evaluation_harness'):
+        current_directory = os.path.dirname(current_directory)
+        if current_directory == os.path.dirname(current_directory):
+            print("Project root 'lm_harness' not found.")
+            return
+        
+    target_path = os.path.join(current_directory, task_dir_name )
+    try:
+        os.chdir(target_path)
+    except Exception as e:
+        print(f"cant find task directory {e}")
+
+    return target_path
+
+def write_to_jsonl(results, jsonl_path:str):
+
+    # Check if 'results' and 'results[task_name]' exist
+    if 'results' not in results or not results['results']:
+        print("No results found.")
+        return None
+
+    keys= list(results['results'].keys())
+    task_name = keys[0]
+    if task_name == 'khayyam-challenge':    
+        output={
+            
+            "khayyam-challenge" : round((results['results'][task_name]["acc,none"])*100,2),
+            "Model" : results["config"]["model_name"],
+            "#Params (B)" : ((results["config"]["model_num_parameters"])//1000000000),
+            "Precision" : results["config"]["model_dtype"]
+        }
+    
+
+    with open(jsonl_path,'a') as f:
+        f.write(json.dumps(output) + "\n")
+
+    return output
 
 
 
-path = "results.jsonl"
 
-df = read_jsonl_file(path)
+# path = "results.jsonl"
 
-print(df)
+# df = read_jsonl_file(path)
+
+# print(df)
 

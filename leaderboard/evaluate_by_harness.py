@@ -112,9 +112,23 @@ def read_json_file(file_path: str):
     return data 
 
 
-
+def evaluate(model):
+    eval_request = EvalRequest(
+        model_arg=model, 
+        json_filepath="results.jsonl",
+        )
+    tasks = ['hellaswag', 'khayyam-challeng']
+    for task in tasks:
+        run_evaluatin(
+            eval_request=eval_request,
+            task_names=task,
+            num_fewshot=0,
+            batch_size="auto",
+            device='cuda',
+            local_dir="output_result",
+            )
     
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # eval_request = EvalRequest(
     #     model_arg="google/gemma-2-9b", 
     #     json_filepath="results.jsonl",
@@ -131,4 +145,3 @@ if __name__ == "__main__":
     # output = write_to_jsonl(results=result, jsonl_path="results.jsonl")
     # print(output)
 
-    print(os.path.abspath(__file__))

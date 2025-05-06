@@ -91,7 +91,7 @@ def run_evaluatin(
     logger.info(utils.make_table(results))
     print(f"evaluation result saved to {results_path}")
 
-    jsonl_path = utils_leaderboard.change_directory("leaderbard")
+    jsonl_path = utils_leaderboard.change_directory("leaderboard")
     # if os.path.exists(jsonl_path):
     #     print("Directory already exists:", jsonl_path)
     # else:

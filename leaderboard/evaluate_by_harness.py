@@ -102,7 +102,7 @@ def run_evaluatin(
     #     date_time_str = now.strftime("%Y%m%d_%H%M%S")
     #     result_path = f"result_{date_time_str}.jsonl"
 
-    eval_result = utils_leaderboard.write_to_jsonl(results, jsonl_path=jsonl_path)
+    eval_result = utils_leaderboard.write_to_jsonl(results, jsonl_path=jsonl_file_path)
     return(eval_result,jsonl_file_path)
 
 

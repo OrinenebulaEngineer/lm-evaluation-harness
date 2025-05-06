@@ -51,7 +51,16 @@ def submit_request(
         dataset = dataset.add_item(new_entry)
         dataset.push_to_hub(DATASET_NAME)
         try:
-            response = requests.post()
+            response = requests.post(
+              "http://172.20.253.8:8080/evaluate",
+               json = new_entry,
+               timeout=10 
+            )
+
+            if response.status_code != 200:
+                 return f"Dataset pushed, but error from server: {response.status_code}, {response.text}"
+        except Exception as e:
+            print(f"can not send request to remote server")
 
         return f"✅ Submitted! ID: {new_entry['id']}"
 

@@ -65,7 +65,7 @@ def change_directory(task_dir_name:str):
             return
         
     target_path = os.path.join(current_directory, task_dir_name )
-    print(target_path)
+    print(f"this is target path {target_path}")
     try:
         os.chdir(target_path)
     except Exception as e:

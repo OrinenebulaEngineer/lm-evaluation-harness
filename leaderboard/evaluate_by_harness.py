@@ -102,7 +102,7 @@ def run_evaluatin(
     #     result_path = f"result_{date_time_str}.jsonl"
 
     eval_result = utils_leaderboard.write_to_jsonl(results, jsonl_path=jsonl_path)
-    return(results_path)
+    return(eval_result)
 
 
 
@@ -118,8 +118,9 @@ def evaluate(model):
         json_filepath="results.jsonl",
         )
     tasks = ['hellaswag', 'khayyam-challeng']
+    eval_results = []
     for task in tasks:
-        run_evaluatin(
+        eval_result= run_evaluatin(
             eval_request=eval_request,
             task_names=task,
             num_fewshot=0,
@@ -127,7 +128,10 @@ def evaluate(model):
             device='cuda',
             local_dir="output_result",
             )
-    
+        print(eval_result)
+        eval_results.append(eval_result)
+    return eval_results
+eval_result = evaluate("google/gemma-2-9b")
 # if __name__ == "__main__":
     # eval_request = EvalRequest(
     #     model_arg="google/gemma-2-9b", 

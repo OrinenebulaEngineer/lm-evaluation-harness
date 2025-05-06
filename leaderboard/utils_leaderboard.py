@@ -58,7 +58,7 @@ import os
 def change_directory(task_dir_name:str):
 
     current_directory = os.getcwd()
-    while not current_directory.endswith('lm-evaluation-arness'):
+    while not current_directory.endswith('lm-evaluation-harness'):
         current_directory = os.path.dirname(current_directory)
         if current_directory == os.path.dirname(current_directory):
             print("Project root 'lm_harness' not found.")

@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 
-app = flask(__name__)
+app = Flask(__name__)
 
 @app.route('/evaluate', methods=['POST'])
 def evaluate():

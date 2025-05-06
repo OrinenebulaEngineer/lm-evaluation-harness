@@ -58,7 +58,7 @@ def change_directory(task_dir_name:str):
         if current_directory == os.path.dirname(current_directory):
             print("Project root 'lm_harness' not found.")
             return
-        
+    print(f"this is current dit {current_directory}")    
     target_path = os.path.join(current_directory, task_dir_name )
     print(f"this is target path {target_path}")
     try:

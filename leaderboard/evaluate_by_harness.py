@@ -22,7 +22,6 @@ def run_evaluatin(
         
         eval_request : EvalRequest,
         task_names : list,
-        task_direcotry : str,
         num_fewshot: int,
         batch_size: Union[int, str],
         device: str,

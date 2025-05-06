@@ -120,6 +120,7 @@ def evaluate(model):
         )
     tasks = ['hellaswag', 'khayyam']
     eval_results = []
+    jsonl_path = ""
     for task in tasks:
         eval_result,jsonl_path= run_evaluatin(
             eval_request=eval_request,

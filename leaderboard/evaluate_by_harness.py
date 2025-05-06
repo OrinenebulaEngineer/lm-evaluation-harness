@@ -91,7 +91,8 @@ def run_evaluatin(
     logger.info(utils.make_table(results))
     print(f"evaluation result saved to {results_path}")
 
-    jsonl_path = utils_leaderboard.change_directory("leaderboard")
+    jsonl_dir = utils_leaderboard.change_directory("leaderboard")
+    jsonl_file_path = os.path.join(jsonl_dir, f"results.jsonl")
     # if os.path.exists(jsonl_path):
     #     print("Directory already exists:", jsonl_path)
     # else:
@@ -102,7 +103,7 @@ def run_evaluatin(
     #     result_path = f"result_{date_time_str}.jsonl"
 
     eval_result = utils_leaderboard.write_to_jsonl(results, jsonl_path=jsonl_path)
-    return(eval_result)
+    return(eval_result,jsonl_file_path)
 
 
 
@@ -120,7 +121,7 @@ def evaluate(model):
     tasks = ['hellaswag', 'khayyam']
     eval_results = []
     for task in tasks:
-        eval_result= run_evaluatin(
+        eval_result,jsonl_path= run_evaluatin(
             eval_request=eval_request,
             task_names=task,
             num_fewshot=0,

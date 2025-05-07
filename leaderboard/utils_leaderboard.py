@@ -9,12 +9,9 @@ def read_jsonl_file(jsonl_file_path:str):
     result_list = []
     if not os.path.exists(jsonl_file_path):
         print("file not found")
-
-        # return ["File not found", "", "", "", "", ""]
         return
-    with open(jsonl_file_path, "r") as f:
+    
 
-        return 
     with open(jsonl_file_path, "r") as f:
 
         for line in f:
@@ -110,9 +107,10 @@ def write_to_jsonl(results, jsonl_path:str):
         with open(jsonl_path, 'r') as f:
             for line in f:
                 entry = json.loads(line)
-                if  not entry.get("Model") == model_name and entry.get(task_name)==task_name:
+                if  not (entry.get("Model") == model_name and entry.get(task_name)==task_name):
                     filterd_line.append(line)
         
+        print(f"filterd line is ::::::")
         with open(jsonl_path, 'w') as f:
             f.writelines(filterd_line)
     

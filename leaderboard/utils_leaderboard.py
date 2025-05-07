@@ -5,58 +5,46 @@ from typing import Union
 
 # import gradio as gr
 
-def read_jsonl_file(jsonl_file_path:str):
-    result_list = []
+def jsonl_to_table(jsonl_file_path:str):
+    records =[]
     if not os.path.exists(jsonl_file_path):
         print("file not found")
         return
     
-
+    
     with open(jsonl_file_path, "r") as f:
 
         for line in f:
             try:
-                 entry = json.loads(line)
+                 records.append(json.loads(line))
+            except json.JSONDecodeError:
+                 continue
+            
+            df = pd.DataFrame(records)
 
-                 task_name = entry[0]
-                #  khayyam_chal
-                # lenge = data.get("khayyam-challenge", 0)
 
-                 average_acc = (int(hellaswag) + int(khayyam_challenge))/2
+            pivot_df = df.pivot_table(index='Model', columns='Task', values='accuracy',  aggfunc='first').reset_index()
+            extra_cols = df.groupby('Model')[["Precision", "#Params (B)"]].first()
 
-                 result_list.append([   
-                 data.get("Model", ""),
-                 average_acc,
-                 data.get("Precision", ""),
-                 data.get("#Params (B)", ""),
-                 hellaswag,
-                 khayyam_challenge])
-            except Exception as e:
-                print([f"Error handling file {e}", "","", "","", ""])
+            #Combine everything
+            final_df = extra_cols.join(pivot_df).reset_index()
 
-            df = pd.DataFrame(result_list, columns=["Model","Average_Accuracy", "Precision", "#Params (B)", "hellaswag", "khayyam-challenge"])
-            df_sorted = df.sort_values(by="Average_Accuracy", ascending=False)
-    return df_sorted.values.tolist()
+            return final_df.fillna("-")
+
+
+
+def display_table():
+    table = jsonl_to_table
+    return gr.Dataframe(value=table, headers="keys", datatype="auto", label="Model Performance Table")
 
 
 
 
 
 def lunch_show_results():
-    headers = ["Model","Average_Accuracy", "Precision", "#Params (B)", "hellaswag", "khayyam-challenge"]
-    with gr.Blocks() as app:
-            gr.Markdown("# Results Viewer")  # title
-            tabel = gr.Dataframe(
-                 headers = headers,
-                 datatype= "str",
-                 value = read_jsonl_file(),
-                 interactive=False       # not editable
-            )
-
-    app.launch()
+    demo = gr.Interface(fn = display_table, inputs=[], outputs= "dataframe", title="Model Accuracy Table" )
 
 
-import os 
 
 def change_directory(task_dir_name:str):
 

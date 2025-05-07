@@ -134,21 +134,9 @@ def evaluate(model):
         print(eval_result)
         eval_results.append(eval_result)
     return eval_results
-eval_result = evaluate("google/gemma-2-9b")
-# if __name__ == "__main__":
-    # eval_request = EvalRequest(
-    #     model_arg="google/gemma-2-9b", 
-    #     json_filepath="results.jsonl",
-    #     )
-    # run_evaluatin(
-    #     eval_request=eval_request,
-    #     task_names=['khayyam-challenge'],
-    #     num_fewshot=0,
-    #     batch_size="auto",
-    #     device='cuda',
-    #     local_dir="output_result",
-    #     )
-    # result = read_json_file("output_result/google/gemma-2-9b/results_2025-05-04 12:45:41.097698.json")
-    # output = write_to_jsonl(results=result, jsonl_path="results.jsonl")
-    # print(output)
+
+if __name__ == "__main__":
+    # eval_result = evaluate("google/gemma-2-9b")
+    utils_leaderboard.demo.launch()
+
 

@@ -83,9 +83,9 @@ def write_to_jsonl(results, jsonl_path:str):
     keys= list(results['results'].keys())
     task_name = keys[0] 
 
-    acc =  round((results['results'][task_name]["acc,none"])*100,2),
-    model_name = results["config"]["model_name"],
-    model_params=((results["config"]["model_num_parameters"])//1000000000),
+    acc =  round((results['results'][task_name]["acc,none"])*100,2)
+    model_name = results["config"]["model_name"]
+    model_params=((results["config"]["model_num_parameters"])//1000000000)
     model_precision = results["config"]["model_dtype"]
 
 

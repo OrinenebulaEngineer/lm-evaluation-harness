@@ -1,4 +1,2 @@
-{"hellaswag": 60.0, "Model": "google/gemma-2-9b", "#Params (B)": 9, "Precision": "bfloat16"}
-{"khayyam-challenge": 40.0, "Model": "google/gemma-2-9b", "#Params (B)": 9, "Precision": "bfloat16"}
-{"hellaswag": [60.0], "Model": ["google/gemma-2-9b"], "#Params (B)": [9], "Precision": "bfloat16", "# Count result": 0}
-{"khayyam-challenge": [40.0], "Model": ["google/gemma-2-9b"], "#Params (B)": [9], "Precision": "bfloat16", "# Count result": 0}
+{"Task": "hellaswag", "accuracy": 60.0, "Model": "google/gemma-2-9b", "#Params (B)": 9, "Precision": "bfloat16", "# Count result": 0}
+{"Task": "khayyam-challenge", "accuracy": 40.0, "Model": "google/gemma-2-9b", "#Params (B)": 9, "Precision": "bfloat16", "# Count result": 0}

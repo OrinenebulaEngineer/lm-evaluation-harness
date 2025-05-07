@@ -102,7 +102,7 @@ def write_to_jsonl(results, jsonl_path:str):
                 if  not (entry.get("Model") == model_name and entry.get("Task")==task_name):
                     filterd_line.append(line)
         
-        print(f"filterd line is ::::::")
+       
         with open(jsonl_path, 'w') as f:
             f.writelines(filterd_line)
     
@@ -114,7 +114,7 @@ def write_to_jsonl(results, jsonl_path:str):
     current_dir = Path(__file__).resolve().parent
 
     # Define source and destination paths relative to current script
-    source_path = current_dir / "lm_evaluation_harness" / "leaderboard" / "result.jsonl"
+    source_path = current_dir  / "result.jsonl"
     destination_path = current_dir / "HF_leaderboard" / "result.jsonl"
     # Make sure destination directory exists
     destination_path.parent.mkdir(parents=True, exist_ok=True)

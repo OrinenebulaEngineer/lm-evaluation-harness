@@ -135,6 +135,6 @@ def evaluate(model):
         eval_results.append(eval_result)
     return eval_results
 
-eval_result = evaluate("google/gemma-2-9b")
+# eval_result = evaluate("google/gemma-2-9b")
 
 

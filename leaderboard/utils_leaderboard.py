@@ -8,11 +8,11 @@ from typing import Union
 def read_jsonl_file(jsonl_file_path:str):
     result_list = []
     if not os.path.exists(jsonl_file_path):
-        print("file not found"
+        print("file not found")
 
         # return ["File not found", "", "", "", "", ""]
         return
-    with open(jsonl_path, "r") as f:
+    with open(jsonl_file_path, "r") as f:
 
         return 
     with open(jsonl_file_path, "r") as f:

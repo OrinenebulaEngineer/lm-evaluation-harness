@@ -43,6 +43,7 @@ def display_table():
 
 def lunch_show_results():
     demo = gr.Interface(fn = display_table, inputs=[], outputs= "dataframe", title="Model Accuracy Table" )
+    return demo
 
 
 

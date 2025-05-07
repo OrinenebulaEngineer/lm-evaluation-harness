@@ -22,7 +22,8 @@ def read_jsonl_file(jsonl_file_path:str):
                  entry = json.loads(line)
 
                  task_name = entry[0]
-                #  khayyam_challenge = data.get("khayyam-challenge", 0)
+                #  khayyam_chal
+                # lenge = data.get("khayyam-challenge", 0)
 
                  average_acc = (int(hellaswag) + int(khayyam_challenge))/2
 
@@ -104,12 +105,16 @@ def write_to_jsonl(results, jsonl_path:str):
             "# Count result" : 0
         }
 
+    filterd_line = []
     if os.path.exists(jsonl_path):
         with open(jsonl_path, 'r') as f:
             for line in f:
                 entry = json.loads(line)
-                if entry.get("Model") == model_name and entry.get(task_name)==task_name:
-                    output["# Count result"] = output["# Count result"] + 1
+                if  not entry.get("Model") == model_name and entry.get(task_name)==task_name:
+                    filterd_line.append(line)
+        
+        with open(jsonl_path, 'w') as f:
+            f.writelines(filterd_line)
     
 
     with open(jsonl_path,'a') as f:

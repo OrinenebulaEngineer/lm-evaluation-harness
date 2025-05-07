@@ -123,7 +123,7 @@ def evaluate(model):
     for task in tasks:
         eval_result,jsonl_path= run_evaluatin(
             eval_request=eval_request,
-            task_names=tasks,
+            task_names=task,
             num_fewshot=0,
             batch_size="auto",
             task_direcotry=task,

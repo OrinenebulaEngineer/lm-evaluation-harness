@@ -8,16 +8,21 @@ from typing import Union
 def read_jsonl_file(jsonl_file_path:str):
     result_list = []
     if not os.path.exists(jsonl_file_path):
-        print("file not found")
+        print("file not found"
+
         # return ["File not found", "", "", "", "", ""]
         return
-    with open(path, "r") as f:
+    with open(jsonl_path, "r") as f:
+
+        return 
+    with open(jsonl_file_path, "r") as f:
+
         for line in f:
             try:
-                 data = json.loads(line)
+                 entry = json.loads(line)
 
-                 hellaswag = data.get("hellaswag", 0)
-                 khayyam_challenge = data.get("khayyam-challenge", 0)
+                 task_name = entry[0]
+                #  khayyam_challenge = data.get("khayyam-challenge", 0)
 
                  average_acc = (int(hellaswag) + int(khayyam_challenge))/2
 
@@ -91,7 +96,8 @@ def write_to_jsonl(results, jsonl_path:str):
 
     output={
             
-            task_name :    acc,  
+            "Task" :    task_name,
+            "accuracy" : acc,  
             "Model" :        model_name,
             "#Params (B)" :  model_params,
             "Precision" :    model_precision,
@@ -102,7 +108,7 @@ def write_to_jsonl(results, jsonl_path:str):
         with open(jsonl_path, 'r') as f:
             for line in f:
                 entry = json.loads(line)
-                if entry.get("Model") == model_name and entry[0]==task_name:
+                if entry.get("Model") == model_name and entry.get(task_name)==task_name:
                     output["# Count result"] = output["# Count result"] + 1
     
 

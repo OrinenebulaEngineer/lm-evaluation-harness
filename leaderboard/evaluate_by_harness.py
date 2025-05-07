@@ -44,9 +44,10 @@ def run_evaluatin(
     Returns:
         _type_: _description_
     """
-    task_direcotry = f"lm_eval/tasks/{task_direcotry}"
-    run_direcory = utils_leaderboard.change_directory(task_dir_name=task_direcotry)
-    print(f"Current directory is {run_direcory}")
+    if(task_direcotry == "khayyam-challenge"): #each custom task can add
+        task_direcotry = f"lm_eval/tasks/{task_direcotry}"
+        run_direcory = utils_leaderboard.change_directory(task_dir_name=task_direcotry)
+        print(f"Current directory is {run_direcory}")
 
     logging.getLogger("openai").setLevel(logging.WARNING)
     logger = setup_logger(__name__)
@@ -117,7 +118,7 @@ def evaluate(model):
         model_arg=model, 
         json_filepath="results.jsonl",
         )
-    tasks = ['hellaswag', 'khayyam-challenge', 'arc']
+    tasks = ['hellaswag', 'khayyam-challenge', 'arc_easy']
     eval_results = []
     jsonl_path = ""
     for task in tasks:

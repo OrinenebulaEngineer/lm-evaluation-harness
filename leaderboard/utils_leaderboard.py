@@ -4,7 +4,7 @@ import os
 from typing import Union
 import gradio as gr
 from pathlib import Path
-
+import shutil
 
 # import gradio as gr
 
@@ -128,9 +128,4 @@ def write_to_jsonl(results, jsonl_path:str):
 
 
 
-# path = "results.jsonl"
-
-# df = read_jsonl_file(path)
-
-# print(df)
 

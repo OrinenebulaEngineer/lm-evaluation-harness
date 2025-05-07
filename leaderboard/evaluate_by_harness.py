@@ -135,9 +135,6 @@ def evaluate(model):
         eval_results.append(eval_result)
     return eval_results
 
-if __name__ == "__main__":
-    # eval_result = evaluate("google/gemma-2-9b")
-   demo = utils_leaderboard.lunch_show_results()
-   demo.launch()
+eval_result = evaluate("google/gemma-2-9b")
 
 

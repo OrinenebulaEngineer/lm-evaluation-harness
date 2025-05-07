@@ -14,11 +14,11 @@ def trigger_evaluation():
     print(f"🚀 Evaluation triggered for model: {model}")
 
     # ✅ Call your local evaluate function
-    # eval_response = evaluate(model)
+    eval_response = evaluate(model)
 
     # ✅ Optional: Forward the evaluation result to another server if needed
-    # payload = {"model": model, "eval_result": eval_response}
-    payload = {"salam" : "hi"}
+    payload = {"model": model, "eval_result": eval_response}
+    # payload = {"salam" : "hi"}
     try:
         forward_response = requests.post("http://localhost:5001/show_result", json=payload)
         forward_status = forward_response.status_code
@@ -28,7 +28,7 @@ def trigger_evaluation():
     return jsonify({
         "status": "evaluation started",
         "model": model,
-        # "eval_result": eval_response,
+        "eval_result": eval_response,
         "forward_status": forward_status
     })
 

@@ -111,11 +111,11 @@ def write_to_jsonl(results, jsonl_path:str):
         f.write(json.dumps(output) + "\n")
 
     #copy result.jsonl in hf_leaderboard
-    current_dir = Path(__file__).resolve().parent
+    current_dir = Path.cwd()
 
     # Define source and destination paths relative to current script
-    source_path = current_dir  / "results.jsonl"
-    destination_path = current_dir / "HF_leaderboard" / "results.jsonl"
+    source_path = current_dir.parent.parent /
+    destination_path = source_path / "HF_leaderboard" / "results.jsonl"
     # Make sure destination directory exists
     destination_path.parent.mkdir(parents=True, exist_ok=True)
 

@@ -3,6 +3,7 @@ import pandas as pd
 import os
 from typing import Union
 import gradio as gr
+from pathlib import Path
 
 
 # import gradio as gr
@@ -108,6 +109,19 @@ def write_to_jsonl(results, jsonl_path:str):
 
     with open(jsonl_path,'a') as f:
         f.write(json.dumps(output) + "\n")
+
+    #copy result.jsonl in hf_leaderboard
+    current_dir = Path(__file__).resolve().parent
+
+    # Define source and destination paths relative to current script
+    source_path = current_dir / "lm_evaluation_harness" / "leaderboard" / "result.jsonl"
+    destination_path = current_dir / "hf_leaderboard" / "result.jsonl"
+    # Make sure destination directory exists
+    destination_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Copy the file
+    shutil.copy(source_path, destination_path)
+    print(f"Copied to {destination_path}")
 
     return output
 

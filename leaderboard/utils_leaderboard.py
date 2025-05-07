@@ -107,7 +107,7 @@ def write_to_jsonl(results, jsonl_path:str):
         with open(jsonl_path, 'r') as f:
             for line in f:
                 entry = json.loads(line)
-                if  not (entry.get("Model") == model_name and entry.get(task_name)==task_name):
+                if  not (entry.get("Model") == model_name and entry.get("Task")==task_name):
                     filterd_line.append(line)
         
         print(f"filterd line is ::::::")

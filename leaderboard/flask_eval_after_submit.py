@@ -20,7 +20,7 @@ def trigger_evaluation():
     # payload = {"model": model, "eval_result": eval_response}
     payload = {"salam" : "hi"}
     try:
-        forward_response = requests.post("http://localhost:5001/evaluate", json=payload)
+        forward_response = requests.post("http://localhost:5001/show_result", json=payload)
         forward_status = forward_response.status_code
     except Exception as e:
         forward_status = f"Failed to forward: {e}"

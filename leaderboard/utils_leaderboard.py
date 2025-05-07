@@ -77,13 +77,28 @@ def write_to_jsonl(results, jsonl_path:str):
 
     keys= list(results['results'].keys())
     task_name = keys[0] 
+
+    acc =  round((results['results'][task_name]["acc,none"])*100,2),
+    model_name = results["config"]["model_name"],
+    model_params=((results["config"]["model_num_parameters"])//1000000000),
+    model_precision = results["config"]["model_dtype"]
+
+
     output={
             
-            task_name : round((results['results'][task_name]["acc,none"])*100,2),
-            "Model" : results["config"]["model_name"],
-            "#Params (B)" : ((results["config"]["model_num_parameters"])//1000000000),
-            "Precision" : results["config"]["model_dtype"]
+            task_name :    acc,  
+            "Model" :        model_name,
+            "#Params (B)" :  model_params,
+            "Precision" :    model_precision,
+            "# Count result" : 0
         }
+
+    if os.path.exists(jsonl_path):
+        with open(jsonl_path, 'r') as f:
+            for line in f:
+                entry = json.loads(line)
+                if entry.get("Model") == model_name and entry[0]==task_name:
+                    output["# Count result"] = output["# Count result"] + 1
     
 
     with open(jsonl_path,'a') as f:

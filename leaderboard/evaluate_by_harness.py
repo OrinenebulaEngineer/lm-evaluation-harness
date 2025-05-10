@@ -91,8 +91,19 @@ def run_evaluatin(
     logger.info(utils.make_table(results))
     print(f"evaluation result saved to {results_path}")
 
-    jsonl_dir = utils_leaderboard.change_directory("leaderboard")
-    jsonl_file_path = os.path.join(jsonl_dir, f"results.jsonl")
+    # Assuming this is part of your run_evaluatin function
+    try:
+        jsonl_dir = utils_leaderboard.change_directory("leaderboard")
+        if jsonl_dir is None:
+            raise ValueError("Failed to change to the 'leaderboard' directory.")
+        
+        print(f"jsonl_dir: {jsonl_dir}")  # Debugging output
+        jsonl_file_path = os.path.join(jsonl_dir, "results.jsonl")
+        print(f"jsonl_file_path: {jsonl_file_path}")  # Debugging output
+    except Exception as e:
+        logger.error(f"Error during directory change or file path creation: {e}")
+        return  # Handle the error appropriately
+
     # if os.path.exists(jsonl_path):
     #     print("Directory already exists:", jsonl_path)
     # else:
@@ -118,7 +129,7 @@ def evaluate(model):
         model_arg=model, 
         json_filepath="results.jsonl",
         )
-    tasks = ['hellaswag'] #, 'khayyam-challenge', 'arc_easy'
+    tasks = ['hellaswag', 'khayyam-challenge', 'arc_easy'] #, 'khayyam-challenge', 'arc_easy'
     eval_results = []
     jsonl_path = ""
     for task in tasks:

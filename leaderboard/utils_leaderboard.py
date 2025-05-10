@@ -149,12 +149,12 @@ def write_to_jsonl(results, jsonl_path:str):
     shutil.copy(source_path, destination_path)
     print(f"Copied to {destination_path}")
 
-    run_directory = destination_path
+    hf_dir_path = current_dir.parent.parent / "HF_leaderboard" 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #last locatopn
     try:
-        print(f"this is run directory{run_directory}")
-        os.chdir(run_directory)
+        print(f"this is run directory{hf_dir_path}")
+        os.chdir(hf_dir_path)
         result = upload_jsonl_to_hf("results.jsonl", "orinnebula/results")
     except Exception as e:
         print(f"cant find HF_leaderboard directory for push result dataset directory {e}")

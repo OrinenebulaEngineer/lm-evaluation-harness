@@ -5,6 +5,7 @@ from typing import Union
 import gradio as gr
 from pathlib import Path
 import shutil
+from datasets import Dataset
 
 # import gradio as gr
 
@@ -68,6 +69,31 @@ def change_directory(task_dir_name:str):
 
     return target_path
 
+def upload_jsonl_to_hf(jsonl_path: str, repo_name: str, private: bool = False):
+    """
+    Upload a JSONL file as a Hugging Face dataset.
+    Args:
+        jsonl_path (str): Path to the .jsonl file.
+        repo_name (str): The name of the dataset repository on Hugging Face, e.g. "username/result".
+        private (bool): Whether the dataset should be private. Default is False (public).
+    """
+    # Load the .jsonl data
+    with open(jsonl_path, "r") as f:
+        data = [json.loads(line) for line in f]
+
+    # Convert to Hugging Face Dataset
+    dataset = Dataset.from_list(data)
+    print(f"  ready for push to hf dataset")
+
+    # Push to Hugging Face Hub
+    dataset.push_to_hub(repo_name, private=private)
+    print(f"   PUSH to hf dataset")
+
+
+
+
+
+
 def write_to_jsonl(results, jsonl_path:str):
 
     # Check if 'results' and 'results[task_name]' exist
@@ -123,7 +149,18 @@ def write_to_jsonl(results, jsonl_path:str):
     shutil.copy(source_path, destination_path)
     print(f"Copied to {destination_path}")
 
+    run_directory = destination_path
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#last locatopn
+    try:
+        print(f"this is run directory{run_directory}")
+        os.chdir(run_directory)
+        result = upload_jsonl_to_hf("results.jsonl", "orinnebula/results")
+    except Exception as e:
+        print(f"cant find HF_leaderboard directory for push result dataset directory {e}")
+
     return output
+
 
 
 

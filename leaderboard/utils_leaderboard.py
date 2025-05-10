@@ -171,6 +171,7 @@ def write_to_jsonl(results, jsonl_path:str):
     except Exception as e:
         print(f"cant find HF_leaderboard directory for push result dataset directory {e}")
 
+    os.chdir(current_dir)
     return output
 
 

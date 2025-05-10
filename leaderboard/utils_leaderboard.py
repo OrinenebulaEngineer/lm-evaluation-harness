@@ -6,6 +6,8 @@ import gradio as gr
 from pathlib import Path
 import shutil
 from datasets import Dataset
+from datasets import Dataset, Features, Value
+
 
 # import gradio as gr
 
@@ -81,8 +83,18 @@ def upload_jsonl_to_hf(jsonl_path: str, repo_name: str, private: bool = False):
     with open(jsonl_path, "r") as f:
         data = [json.loads(line) for line in f]
 
-    # Convert to Hugging Face Dataset
-    dataset = Dataset.from_list(data)
+    # Define the features explicitly
+    features = Features({
+        'Task': Value(dtype='string'),
+        'accuracy': Value(dtype='float64'),
+        'Model': Value(dtype='string'),
+        '#Params (B)': Value(dtype='int64'),
+        'Precision': Value(dtype='string'),
+        '# Count result': Value(dtype='int64')
+    })
+
+    # Convert to Hugging Face Dataset with defined features
+    dataset = Dataset.from_list(data, features=features)
     print(f"  ready for push to hf dataset")
 
     # Push to Hugging Face Hub
